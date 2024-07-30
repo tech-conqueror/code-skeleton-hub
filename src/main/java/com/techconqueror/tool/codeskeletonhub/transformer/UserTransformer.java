@@ -1,6 +1,6 @@
 package com.techconqueror.tool.codeskeletonhub.transformer;
 
-import com.techconqueror.tool.codeskeletonhub.entity.User;
-import com.techconqueror.tool.codeskeletonhub.resource.UserResource;
+import com.techconqueror.tool.codeskeletonhub.entity.UserEntity;
+import com.techconqueror.tool.codeskeletonhub.resource.User;
 
-public interface UserTransformer extends Transformer<User, UserResource> {}
+public interface UserTransformer extends Transformer<UserEntity, User> {}

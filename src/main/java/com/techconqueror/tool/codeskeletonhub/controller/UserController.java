@@ -2,7 +2,7 @@ package com.techconqueror.tool.codeskeletonhub.controller;
 
 import com.github.fge.jsonpatch.JsonPatchOperation;
 import com.techconqueror.tool.codeskeletonhub.domain.request.SearchRequest;
-import com.techconqueror.tool.codeskeletonhub.resource.UserResource;
+import com.techconqueror.tool.codeskeletonhub.resource.User;
 import com.techconqueror.tool.codeskeletonhub.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -21,27 +21,27 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<Page<UserResource>> getUsers(final @Valid @RequestBody SearchRequest searchRequest) {
+    public ResponseEntity<Page<User>> getUsers(final @Valid @RequestBody SearchRequest searchRequest) {
         return ResponseEntity.ok(userService.getUsers(searchRequest));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResource> getUser(final @PathVariable Long id) {
+    public ResponseEntity<User> getUser(final @PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @PostMapping
-    public ResponseEntity<UserResource> createUser(final @Valid @RequestBody UserResource userResource) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userResource));
+    public ResponseEntity<User> createUser(final @Valid @RequestBody User user) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> replaceUser(final @PathVariable Long id, final @Valid @RequestBody UserResource userResource) {
-        if (!id.equals(userResource.getId())) {
+    public ResponseEntity<Void> replaceUser(final @PathVariable Long id, final @Valid @RequestBody User user) {
+        if (!id.equals(user.id())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
 
-        userService.replaceUser(userResource);
+        userService.replaceUser(user);
         return ResponseEntity.noContent().build();
     }
 

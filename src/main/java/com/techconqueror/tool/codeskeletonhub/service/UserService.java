@@ -2,20 +2,20 @@ package com.techconqueror.tool.codeskeletonhub.service;
 
 import com.github.fge.jsonpatch.JsonPatchOperation;
 import com.techconqueror.tool.codeskeletonhub.domain.request.SearchRequest;
-import com.techconqueror.tool.codeskeletonhub.resource.UserResource;
+import com.techconqueror.tool.codeskeletonhub.resource.User;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface UserService {
 
-    Page<UserResource> getUsers(SearchRequest searchRequest);
+    Page<User> getUsers(SearchRequest searchRequest);
 
-    UserResource getUserById(Long id);
+    User getUserById(Long id);
 
-    UserResource createUser(UserResource userResource);
+    User createUser(User user);
 
-    void replaceUser(UserResource userResource);
+    void replaceUser(User user);
 
     void patchUser(Long id, List<JsonPatchOperation> patchOperations);
 

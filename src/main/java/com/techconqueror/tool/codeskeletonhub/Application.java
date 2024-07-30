@@ -1,7 +1,8 @@
 package com.techconqueror.tool.codeskeletonhub;
 
-import com.techconqueror.tool.codeskeletonhub.entity.User;
-import com.techconqueror.tool.codeskeletonhub.repository.UserRepository;
+import com.techconqueror.tool.codeskeletonhub.entity.UserEntity;
+import com.techconqueror.tool.codeskeletonhub.repository.UserEntityRepository;
+import com.techconqueror.tool.codeskeletonhub.service.ChatCompletionService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,9 +18,11 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner init(final UserRepository userRepository) {
-        return args -> IntStream.rangeClosed(1, 3)
-                .mapToObj(i -> new User("firstName" + i, "lastName" + i, "email" + i + "@example.com"))
-                .forEach(userRepository::save);
+    public CommandLineRunner init(final UserEntityRepository userEntityRepository, final ChatCompletionService chatCompletionService) {
+        return args -> {
+            IntStream.rangeClosed(1, 3)
+                    .mapToObj(i -> new UserEntity("name" + i, "email" + i + "@example.com"))
+                    .forEach(userEntityRepository::save);
+        };
     }
 }

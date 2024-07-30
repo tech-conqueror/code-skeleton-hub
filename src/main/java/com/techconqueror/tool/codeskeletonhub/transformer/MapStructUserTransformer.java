@@ -1,7 +1,7 @@
 package com.techconqueror.tool.codeskeletonhub.transformer;
 
-import com.techconqueror.tool.codeskeletonhub.entity.User;
-import com.techconqueror.tool.codeskeletonhub.resource.UserResource;
+import com.techconqueror.tool.codeskeletonhub.entity.UserEntity;
+import com.techconqueror.tool.codeskeletonhub.resource.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -11,8 +11,8 @@ public interface MapStructUserTransformer extends UserTransformer {
     MapStructUserTransformer INSTANCE = Mappers.getMapper(MapStructUserTransformer.class);
 
     @Override
-    UserResource toResource(User user);
+    User toResource(UserEntity userEntity);
 
     @Override
-    User toEntity(UserResource userResource);
+    UserEntity toEntity(User user);
 }
